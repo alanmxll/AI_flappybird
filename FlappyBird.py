@@ -23,7 +23,7 @@ BIRD_IMAGES = [
 
 
 pygame.font.init()
-POINTS_FONT = pygame.font.SysFont('arial', 50)
+SCORE_FONT = pygame.font.SysFont('arial', 50)
 
 
 class Bird:
