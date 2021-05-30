@@ -94,13 +94,13 @@ class Bird:
 
         # Draw the image
         routated_image = pygame.transform.rotate(self.image, self.angle)
-        center_image_position = self.image.get_react(
+        center_image_position = self.image.get_rect(
             topleft=(self.x_axis, self.y_axis)).center
         rectangle = routated_image.get_rect(center=center_image_position)
         screen.blit(routated_image, rectangle)
 
     def get_mask(self):
-        pygame.mask.from_surface(self.image)
+        return pygame.mask.from_surface(self.image)
 
 
 class Pipe:
@@ -163,10 +163,10 @@ class Ground:
         self.x_axis_ground_1 -= self.SPEED
 
         if self.x_axis_ground_0 + self.WIDTH < 0:
-            self.x_axis_ground_0 = self.x_axis_ground_0 + self.WIDTH
+            self.x_axis_ground_0 = self.x_axis_ground_1 + self.WIDTH
 
         if self.x_axis_ground_1 + self.WIDTH < 0:
-            self.x_axis_ground_1 = self.x_axis_ground_1 + self.WIDTH
+            self.x_axis_ground_1 = self.x_axis_ground_0 + self.WIDTH
 
     def draw(self, screen):
         screen.blit(self.IMAGE, (self.x_axis_ground_0, self.y_axis))
