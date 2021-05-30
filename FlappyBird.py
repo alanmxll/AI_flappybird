@@ -171,3 +171,20 @@ class Ground:
     def draw(self, screen):
         screen.blit(self.IMAGE, (self.x_axis_ground_0, self.y_axis))
         screen.blit(self.IMAGE, (self.x_axis_ground_1, self.y_axis))
+
+
+def draw_screen(screen, birds, pipes, ground, score):
+    screen.blit(BACKGROUND_IMAGE, (0, 0))
+
+    for bird in birds:
+        bird.draw(screen)
+
+    for pipe in pipes:
+        pipe.draw(screen)
+
+    score_text = SCORE_FONT.render(f"Score: {score}", 1, (255, 255, 255))
+    screen.blit(score_text, (SCREEN_WIDTH - 10 - score_text.get_width(), 10))
+
+    ground.draw(screen)
+
+    pygame.display.update()
