@@ -1,1 +1,5 @@
+autopep8==1.5.7
+neat-python==0.92
+pycodestyle==2.7.0
 pygame==2.0.1
+toml==0.10.2
