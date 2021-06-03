@@ -76,6 +76,10 @@ def main(genomes, settings):  # fitness function
             for i, bird in enumerate(birds):
                 if pipe.collide(bird):
                     birds.pop(i)
+                    if ai_playing:
+                        genome_list[i].fitness -= 1
+                        genome_list.pop(i)
+                        networks.pop(i)
 
                 if not pipe.passed and bird.x_axis > pipe.x_axis:
                     pipe.passed = True
@@ -88,6 +92,8 @@ def main(genomes, settings):  # fitness function
         if add_pipe:
             scores += 1
             pipes.append(Pipe(600))
+            for genome in genome_list:
+                genome.fitness += 5
 
         for pipe in remove_pipes:
             pipes.remove(pipe)
@@ -95,6 +101,9 @@ def main(genomes, settings):  # fitness function
         for i, bird in enumerate(birds):
             if (bird.y_axis + bird.image.get_height()) > ground.y_axis or bird.y_axis < 0:
                 birds.pop(i)
+                if ai_playing:
+                    genome_list.pop(i)
+                    networks.pop(i)
 
         draw_screen(screen, birds, pipes, ground, scores)
 
