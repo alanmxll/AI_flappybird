@@ -39,6 +39,7 @@ from FlappyBird import (SCREEN_HEIGHT, SCREEN_WIDTH, Bird, Ground, Pipe,
                 pygame.quit()
                 quit()
 
+            if not ai_playing:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     for bird in birds:
