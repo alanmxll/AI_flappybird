@@ -45,9 +45,27 @@ from FlappyBird import (SCREEN_HEIGHT, SCREEN_WIDTH, Bird, Ground, Pipe,
                     for bird in birds:
                         bird.jump()
 
+        pipe_index = 0
+        if len(birds) > 0:
+            if len(pipes) > 1 and birds[0].x_axis > (pipes[0].x_axis + pipes[0].TOP_PIPE.get_width()):
+                pipe_index = 1
+        else:
+            is_running = False
+            break
+
         # Move elements
-        for bird in birds:
+        for i, bird in enumerate(birds):
             bird.move()
+            # Up bird fitness
+            genome_list[i].fitness += 0.1
+            output = networks[i].activate(
+                (bird.y_axis,
+                 abs(bird.y_axis - pipes[pipe_index].height),
+                    abs(bird.y_axis - pipes[pipe_index].base_position))
+            )
+            # -1 and 1 -> if the output is > 0.5 so the bird jump
+            if output[0] > 0.5:
+                bird.jump()
 
         ground.move()
 
