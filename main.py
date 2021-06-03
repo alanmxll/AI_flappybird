@@ -1,3 +1,5 @@
+import os
+
 import neat
 import pygame
 
@@ -108,5 +110,21 @@ def main(genomes, settings):  # fitness function
         draw_screen(screen, birds, pipes, ground, scores)
 
 
+def run(settings_path):
+    settings = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
+                           neat.DefaultSpeciesSet, neat.DefaultStagnation, settings_path)
+
+    birds_population = neat.Population(settings)
+    birds_population.add_reporter(neat.StdOutReporter(True))
+    birds_population.add_reporter(neat.StatisticsReporter())
+
+    if ai_playing:
+        birds_population.run(main, 50)
+    else:
+        main(None, None)
+
+
 if __name__ == '__main__':
-    main()
+    path = os.path.dirname(__file__)
+    settings_path = os.path.join(path, 'settings.txt')
+    run(settings_path)
