@@ -5,8 +5,23 @@ from FlappyBird import (SCREEN_HEIGHT, SCREEN_WIDTH, Bird, Ground, Pipe,
                         ai_playing, draw_screen, generation)
 
 
-def main():
+    global generation
+    generation += 1
+
+    if ai_playing:
+        networks = []
+        genome_list = []
+        birds = []
+
+        for _, genome in genomes:
+            network = neat.nn.FeedForwardNetwork.create(genome, settings)
+            networks.append(network)
+            genome.fitness = 0
+            genome_list.append(genome)
+            birds.append(Bird(230, 350))
+    else:
     birds = [Bird(230, 350)]
+
     ground = Ground(730)
     pipes = [Pipe(700)]
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
