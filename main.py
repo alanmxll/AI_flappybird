@@ -5,6 +5,7 @@ from FlappyBird import (SCREEN_HEIGHT, SCREEN_WIDTH, Bird, Ground, Pipe,
                         ai_playing, draw_screen, generation)
 
 
+def main(genomes, settings):  # fitness function
     global generation
     generation += 1
 
@@ -20,7 +21,7 @@ from FlappyBird import (SCREEN_HEIGHT, SCREEN_WIDTH, Bird, Ground, Pipe,
             genome_list.append(genome)
             birds.append(Bird(230, 350))
     else:
-    birds = [Bird(230, 350)]
+        birds = [Bird(230, 350)]
 
     ground = Ground(730)
     pipes = [Pipe(700)]
@@ -40,10 +41,10 @@ from FlappyBird import (SCREEN_HEIGHT, SCREEN_WIDTH, Bird, Ground, Pipe,
                 quit()
 
             if not ai_playing:
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    for bird in birds:
-                        bird.jump()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        for bird in birds:
+                            bird.jump()
 
         pipe_index = 0
         if len(birds) > 0:
