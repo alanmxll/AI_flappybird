@@ -1,7 +1,8 @@
+import neat
 import pygame
 
 from FlappyBird import (SCREEN_HEIGHT, SCREEN_WIDTH, Bird, Ground, Pipe,
-                        draw_screen)
+                        ai_playing, draw_screen, generation)
 
 
 def main():
