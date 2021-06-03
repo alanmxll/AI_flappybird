@@ -3,6 +3,9 @@ import random
 
 import pygame
 
+ai_playing = True
+generation = 0
+
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 800
 
@@ -184,6 +187,11 @@ def draw_screen(screen, birds, pipes, ground, score):
 
     score_text = SCORE_FONT.render(f"Score: {score}", 1, (255, 255, 255))
     screen.blit(score_text, (SCREEN_WIDTH - 10 - score_text.get_width(), 10))
+
+    if(ai_playing):
+        score_text = SCORE_FONT.render(
+            f"Generation: {generation}", 1, (255, 255, 255))
+        screen.blit(score_text, (10, 10))
 
     ground.draw(screen)
 
